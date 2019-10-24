@@ -1,5 +1,6 @@
 package com.kpe.correos.tt;
 
+import com.kpe.correos.tt.utils.Runner;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.JsonArray;
@@ -28,7 +29,6 @@ import java.util.Map;
       }
     });
   }
-
  */
 public class MainVerticle extends AbstractVerticle {
 
@@ -36,7 +36,7 @@ public class MainVerticle extends AbstractVerticle {
 
   // Convenience method so you can run it in your IDE
   public static void main(String[] args) {
-    Runner.runExample(SimpleREST.class);
+    Runner.runExample(MainVerticle.class);
   }
 
   @Override
