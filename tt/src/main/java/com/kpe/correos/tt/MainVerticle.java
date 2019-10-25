@@ -12,29 +12,10 @@ import io.vertx.ext.web.handler.BodyHandler;
 import java.util.HashMap;
 import java.util.Map;
 
-//public class MainVerticle extends AbstractVerticle {
-/*
-  @Override
-  public void start(Promise<Void> startPromise) throws Exception {
-    vertx.createHttpServer().requestHandler(req -> {
-      req.response()
-        .putHeader("content-type", "text/plain")
-        .end("Hello from Vert.x!");
-    }).listen(8888, http -> {
-      if (http.succeeded()) {
-        startPromise.complete();
-        System.out.println("HTTP server started on port 8888");
-      } else {
-        startPromise.fail(http.cause());
-      }
-    });
-  }
- */
 public class MainVerticle extends AbstractVerticle {
 
   private Map<String, JsonObject> products = new HashMap<>();
 
-  // Convenience method so you can run it in your IDE
   public static void main(String[] args) {
     Runner.runExample(MainVerticle.class);
   }
@@ -46,7 +27,7 @@ public class MainVerticle extends AbstractVerticle {
 
     Router router = Router.router(vertx);
     router.route().handler(BodyHandler.create());
-    router.route("");
+    router.route("/");
     router.get("/products/:productID").handler(this::handleGetProduct);
     router.put("/products/:productID").handler(this::handleAddProduct);
     router.get("/products").handler(this::handleListProducts);
