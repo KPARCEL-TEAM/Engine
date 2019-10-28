@@ -40,6 +40,11 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>com.kpe</groupId>
+      <artifactId>service</artifactId>
+    </dependency>
   </dependencies>
 
   <build>

@@ -19,6 +19,12 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <main.verticle>com.kpe.correos.tt.MainVerticle</main.verticle>
+    <java.version>11</java.version>
+
+    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+    <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
+    <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+    <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
 
     <vertx.version>3.8.3</vertx.version>
     <hibernate.version>5.4.2.Final</hibernate.version>
@@ -27,12 +33,9 @@
     <junit-jupiter.version>5.4.0</junit-jupiter.version>
     <esri.geometry.version>2.2.3</esri.geometry.version>
     <poi-ooxml.version>4.0.1</poi-ooxml.version>
-    <java.version>11</java.version>
-
-    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-    <maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
-    <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
-    <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
+    <slf4j.version>1.7.28</slf4j.version>
+    <log4j.version>2.12.1</log4j.version>
+    <lombok.version>1.18.10</lombok.version>
 
   </properties>
 
@@ -87,6 +90,32 @@
         <groupId>org.apache.poi</groupId>
         <artifactId>poi-ooxml</artifactId>
         <version>${poi-ooxml.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j-impl</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
       </dependency>
 
       <!--项目子模块-->
