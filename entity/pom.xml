@@ -12,10 +12,6 @@
   <artifactId>entity</artifactId>
   <dependencies>
 
-    <dependency>
-      <groupId>com.kpe</groupId>
-      <artifactId>config</artifactId>
-    </dependency>
   </dependencies>
 
 </project>
