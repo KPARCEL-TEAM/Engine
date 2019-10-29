@@ -205,6 +205,21 @@
             </execution>
           </executions>
         </plugin>
+
+        <!-- mvn 启动插件   -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>${exec-maven-plugin.version}</version>
+          <configuration>
+            <mainClass>io.vertx.core.Launcher</mainClass>
+            <arguments>
+              <argument>run</argument>
+              <argument>${main.verticle}</argument>
+            </arguments>
+          </configuration>
+        </plugin>
+
       </plugins>
     </pluginManagement>
   </build>
