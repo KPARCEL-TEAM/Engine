@@ -28,12 +28,12 @@ public class EngineVerticle extends AbstractVerticle {
       .setType("file")
       .setFormat("yaml")
       .setConfig(new JsonObject()
-        .put("path", "web/webConfig.yml")
+        .put("path", "web/webConfig.yaml")
       );
 
     ConfigRetriever retriever = ConfigRetriever.create(vertx, new ConfigRetrieverOptions().addStore(store));
 
-    retriever.rxGetConfig().doOnSuccess(config -> {
+    retriever.rxGetConfig().doAfterSuccess(config -> {
       log.info(config.getInteger("port") + "'");
     });
 

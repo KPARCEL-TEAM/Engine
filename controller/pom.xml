@@ -25,6 +25,21 @@
       <artifactId>vertx-rx-java2</artifactId>
     </dependency>
   </dependencies>
+<build>
+  <plugins>
+    <plugin>
+      <artifactId>maven-compiler-plugin</artifactId>
+    </plugin>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-shade-plugin</artifactId>
+    </plugin>
+    <plugin>
+      <groupId>io.fabric8</groupId>
+      <artifactId>vertx-maven-plugin</artifactId>
+    </plugin>
+  </plugins>
+</build>
 
 
 </project>
