@@ -35,6 +35,7 @@ public class EngineVerticle extends AbstractVerticle {
       );
 
     ConfigRetriever retriever = ConfigRetriever.create(vertx, new ConfigRetrieverOptions().addStore(store));
+
     retriever.getConfig(result -> {
       if (result.failed()) {
         log.error("EngineVerticle load config fail, program stop now !");
@@ -47,7 +48,5 @@ public class EngineVerticle extends AbstractVerticle {
       // start HttpServer
       vertx.deployVerticle(new HttpServerVerticle(httpConfig));
     });
-
-    log.info("zxc");
   }
 }
