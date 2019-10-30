@@ -1,11 +1,12 @@
 package com.kpe.verticle;
 
+import io.reactivex.Single;
 import io.vertx.config.ConfigRetrieverOptions;
 import io.vertx.config.ConfigStoreOptions;
 import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
-import io.vertx.reactivex.config.ConfigRetriever;
-import io.vertx.reactivex.core.AbstractVerticle;
+import io.vertx.config.ConfigRetriever;
+import io.vertx.core.AbstractVerticle;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -33,8 +34,8 @@ public class EngineVerticle extends AbstractVerticle {
 
     ConfigRetriever retriever = ConfigRetriever.create(vertx, new ConfigRetrieverOptions().addStore(store));
 
-    retriever.rxGetConfig().doAfterSuccess(config -> {
-      log.info(config.getInteger("port") + "'");
+    retriever.getConfig(config -> {
+      log.info(config.toString());
     });
 
     log.info("zxc");
