@@ -16,6 +16,7 @@ public class EngineVerticle extends AbstractVerticle {
   @Override
   public void start(Future<Void> startFuture) throws Exception {
 //      Router router = Router.router(vertx);
+
 //    router.get("").handler(::);
 //    router.post("").handler(::);
 //    router.put("").handler(::);
@@ -35,7 +36,7 @@ public class EngineVerticle extends AbstractVerticle {
 
 
     retriever.rxGetConfig().doOnSuccess(config -> {
-      log.info(config.getInteger("port") + "'123");
+      log.info(config.getInteger("port") + "'");
     });
 
     log.info("zxc");
