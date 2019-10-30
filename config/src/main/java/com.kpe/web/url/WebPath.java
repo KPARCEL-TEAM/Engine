@@ -1,4 +1,4 @@
-package com.kpe.url;
+package com.kpe.web.url;
 
 /**
  * @description:
@@ -11,6 +11,11 @@ public final  class WebPath {
    * 创建运单
    */
   public final static String SHIPMENT_ORDER_CREATE = "/shipment/create";
+
+  /**
+   * 生成jwt
+   */
+  public final static String JWT_GET = "/token/get";
 
 
 

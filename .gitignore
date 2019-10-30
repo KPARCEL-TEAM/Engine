@@ -1,12 +1,7 @@
 .idea
-
 .mvn
-
 *.iml
-
 *.class
-
 /target/
-
 /log/
 /*/target/

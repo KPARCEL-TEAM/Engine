@@ -1,12 +1,10 @@
 package com.kpe.controller;
 
-import com.kpe.web.Response;
+import com.kpe.bo.WayBillBO;
+import com.kpe.servcie.ShipmentService;
+import com.kpe.web.response.Response;
 import io.vertx.core.json.Json;
 import io.vertx.ext.web.RoutingContext;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 /**
  * @description:
@@ -15,43 +13,23 @@ import java.util.UUID;
  */
 public class ShipmentController {
 
+  private ShipmentService shipmentService;
+
+  public ShipmentController() {
+    shipmentService = new ShipmentService();
+  }
+
   public void create(RoutingContext routingContext) {
 
+    WayBillBO wayBillBO = Json.decodeValue(routingContext.getBodyAsString(), WayBillBO.class);
 
 
-
-
-    Response<Map<String, Object>> response = new Response<>();
-    Map<String, Object> body = new HashMap<>();
-    body.put("package_number", getPackageNumber());
-    body.put("type", "FMLM");
-
-    Map<String, String> firstMileMap = new HashMap<>();
-    firstMileMap.put("tracking_number", "FM1234567");
-    firstMileMap.put("label_url", "https://someurl/label/FM1234567.pdf");
-    body.put("firstmile", firstMileMap);
-
-    Map<String, String> lastMileMap = new HashMap<>();
-    lastMileMap.put("tracking_number", "LM1234567");
-    lastMileMap.put("label_url", "https://someurl/label/LM1234567.pdf");
-    body.put("lastmile", lastMileMap);
-
-    response.setBody(body);
-
+    Response<?> response = shipmentService.createShipmentOrder(wayBillBO);
     routingContext
       .request()
       .response()
       .putHeader("content-type", "application/json;charset=utf-8")
-      .end(Json.encodePrettily("1232"));
-  }
-
-  /**
-   * 获取包裹编号
-   * @return
-   */
-  private String getPackageNumber() {
-    UUID uuid = UUID.randomUUID();
-    return uuid.toString();
+      .end(Json.encodePrettily(response));
   }
 
 }

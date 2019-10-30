@@ -1,6 +1,7 @@
 package com.kpe.bo;
 
 import com.kpe.base.BaseBO;
+import lombok.Data;
 
 /**
  * @ClassName ServiceBO
@@ -9,7 +10,7 @@ import com.kpe.base.BaseBO;
  * @Date 2019/10/30
  * @Version V1.0
  **/
-
+@Data
 public class ServiceBO implements BaseBO {
 
   private static final long serialVersionUID = -7866201483534995647L;

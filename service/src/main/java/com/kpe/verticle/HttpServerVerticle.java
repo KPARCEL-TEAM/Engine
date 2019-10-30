@@ -1,9 +1,8 @@
 package com.kpe.verticle;
 
-import com.kpe.controller.JwtController;
 import com.kpe.controller.ShipmentController;
 import com.kpe.system.SystemDefaultConfig;
-import com.kpe.web.url.WebPath;
+import com.kpe.url.WebPath;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.http.HttpServerOptions;
@@ -78,8 +77,6 @@ public class HttpServerVerticle extends AbstractVerticle {
     ShipmentController shipmentController = new ShipmentController();
     router.route(WebPath.SHIPMENT_ORDER_CREATE).handler(shipmentController::create);
 
-    JwtController jwtController = new JwtController();
-    router.route(WebPath.JWT_GET).handler(jwtController::getJwt);
     return router;
   }
 }
