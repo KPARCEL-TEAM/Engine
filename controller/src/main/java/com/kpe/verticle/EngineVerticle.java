@@ -2,11 +2,10 @@ package com.kpe.verticle;
 
 import io.vertx.config.ConfigRetrieverOptions;
 import io.vertx.config.ConfigStoreOptions;
+import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
 import io.vertx.reactivex.config.ConfigRetriever;
 import io.vertx.reactivex.core.AbstractVerticle;
-import io.vertx.core.Future;
-import io.vertx.reactivex.ext.web.Router;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -29,11 +28,10 @@ public class EngineVerticle extends AbstractVerticle {
       .setType("file")
       .setFormat("yaml")
       .setConfig(new JsonObject()
-        .put("path", "web/webConfig.yaml")
+        .put("path", "web/webConfig.yml")
       );
 
     ConfigRetriever retriever = ConfigRetriever.create(vertx, new ConfigRetrieverOptions().addStore(store));
-
 
     retriever.rxGetConfig().doOnSuccess(config -> {
       log.info(config.getInteger("port") + "'");

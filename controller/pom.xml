@@ -16,7 +16,6 @@
       <groupId>com.kpe</groupId>
       <artifactId>service</artifactId>
     </dependency>
-
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
