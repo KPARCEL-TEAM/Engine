@@ -1,13 +1,32 @@
-   # Entity
+# Engine   
+
    
    
-   ### Entity实体对象
-   
-   >##### BO (BUSINESS OBJECT) : 业务逻辑对象
-   ---
-   >##### DTO (DATA TRANSFER OBJECT) : 数据传输对象
-   ---
-   >##### PO (PERSISTENT OBJECT) : 持久化对象
-   ---
-   >##### VO (VALUE/VIEW OBJECT) : 值/视图对象
-   ---
+### config
+>   配置资源+静态资源模块
+---
+---
+### entity
+>   各层实体对象模块
+
+### 模块分层简介
+-   BASE:   BO接口抽象
+-   BO  :   业务逻辑对象
+-   DTO :   数据传输对象
+-   PO  :   持久化对象
+-   VO  :   值/视图对象
+-   UTILS:  实体层工具类
+---
+---
+### dao
+>   持久层DB访问模块
+---
+---
+### service
+>   业务逻辑层模块
+---
+---
+### controller
+>   路由控制层模块
+---
+---
