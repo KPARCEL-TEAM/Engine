@@ -48,5 +48,6 @@ public class EngineVerticle extends AbstractVerticle {
       vertx.deployVerticle(new HttpServerVerticle(httpConfig));
     });
 
+    log.info("zxc");
   }
 }
