@@ -20,8 +20,9 @@ public class OrderDao extends BaseDAO<OrderPO> {
 
   @Override
   public List<OrderPO> queryAll() {
-    List<OrderPO> resultList = em.createQuery("from Order", OrderPO.class).getResultList();
-    return resultList;
+//    List<OrderPO> resultList = em.createQuery("from Order", OrderPO.class).getResultList();
+//    return resultList;
+    return null;
   }
 
   @Override
