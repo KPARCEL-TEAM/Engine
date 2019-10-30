@@ -71,11 +71,11 @@
         <version>${hibernate.version}</version>
       </dependency>
 
-<!--      <dependency>-->
-<!--        <groupId>com.alibaba</groupId>-->
-<!--        <artifactId>druid</artifactId>-->
-<!--        <version>${connection-pool.version}</version>-->
-<!--      </dependency>-->
+      <!--      <dependency>-->
+      <!--        <groupId>com.alibaba</groupId>-->
+      <!--        <artifactId>druid</artifactId>-->
+      <!--        <version>${connection-pool.version}</version>-->
+      <!--      </dependency>-->
 
 
       <dependency>
