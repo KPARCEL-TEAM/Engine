@@ -3,6 +3,7 @@ package com.kpe.dao.impl;
 import com.kpe.base.BaseDAO;
 import com.kpe.po.OrderPO;
 
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
 public class OrderDao extends BaseDAO<OrderPO> {
@@ -20,13 +21,16 @@ public class OrderDao extends BaseDAO<OrderPO> {
 
   @Override
   public List<OrderPO> queryAll() {
-    List<OrderPO> resultList = em.createQuery("from Order", OrderPO.class).getResultList();
+    List<OrderPO> resultList = em.createQuery("from " + OrderPO.class.getName()).getResultList();
     return resultList;
   }
 
   @Override
   public void save(OrderPO entity) {
+    EntityTransaction transaction = em.getTransaction();
+    transaction.begin();
     em.persist(entity);
+    transaction.commit();
   }
 
   @Override

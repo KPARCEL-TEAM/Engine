@@ -38,7 +38,7 @@ class OrderDaoTest {
 
   @Test
   void test(){
-    List<OrderPO> resultList = entityManager.createQuery("from Order", OrderPO.class).getResultList();
+    List<OrderPO> resultList = entityManager.createQuery("from " + OrderPO.class.getName()).getResultList();
     System.out.println(resultList.toString());
   }
 }
