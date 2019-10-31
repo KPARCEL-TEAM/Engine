@@ -1,9 +1,6 @@
 package com.kpe.verticle;
 
-import com.kpe.controller.JwtController;
-import com.kpe.controller.ShipmentController;
 import com.kpe.system.SystemDefaultConfig;
-import com.kpe.url.WebPath;
 import com.kpe.util.ClassUtil;
 import com.kpe.web.annotation.Controller;
 import com.kpe.web.annotation.VertxRouter;
@@ -48,7 +45,6 @@ public class HttpServerVerticle extends AbstractVerticle {
     HttpServerOptions options = initHttpServerOptions();
     Router router = initRouter();
     int port = httpConfig.getInteger("port", SystemDefaultConfig.Http.PORT);
-
     vertx.createHttpServer(options)
       .requestHandler(router)
       .listen(port, result -> {
@@ -85,30 +81,11 @@ public class HttpServerVerticle extends AbstractVerticle {
 
     Router router = Router.router(vertx);
     router.route().handler(BodyHandler.create());
-
-
-
-    try {
-      handlerRouter(router);
-    } catch (ClassNotFoundException e) {
-      log.error("init router config fail ------> {}", e);
-      throw e;
-    } catch (Exception e) {
-      log.error("init router config fail, unknow exception ---> {}", e);
-      throw e;
-    }
-
-    ShipmentController shipmentController = new ShipmentController();
-  /*  router.route(HttpMethod.GET, WebPath.SHIPMENT_ORDER_CREATE).handler(rx -> {
-      shipmentController.create(rx);
-    });*/
-
-    JwtController jwtController = new JwtController();
-    router.route(WebPath.TOKEN_GET).handler(jwtController::getJwt);
+    handlerRouter(router);
     return router;
   }
 
-  private void handlerRouter(Router router) throws Exception {
+  private void handlerRouter(Router router) {
 
     String packagePath = httpConfig.getString("controllerPath", SystemDefaultConfig.Http.CONTROLLER_PACKAGE_PATH);
 

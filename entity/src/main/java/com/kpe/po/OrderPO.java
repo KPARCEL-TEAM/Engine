@@ -2,7 +2,6 @@ package com.kpe.po;
 
 
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -18,6 +17,7 @@ public class OrderPO {
 
   @Column(name = "title")
   private String title;
+
   @Column(name = "url")
   private String url;
 }

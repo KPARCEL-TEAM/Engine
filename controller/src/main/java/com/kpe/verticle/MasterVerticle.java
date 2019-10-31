@@ -13,6 +13,8 @@ import java.util.Optional;
 @Slf4j
 public class MasterVerticle extends AbstractVerticle {
 
+  private final static String HTTP_PREFIX = "http";
+
   @Override
   public void start(Future<Void> startFuture) throws Exception {
 
@@ -31,7 +33,7 @@ public class MasterVerticle extends AbstractVerticle {
         return;
       }
       JsonObject globalConfig = result.result();
-      JsonObject httpConfig = Optional.ofNullable(globalConfig.getJsonObject("http")).orElse(new JsonObject());
+      JsonObject httpConfig = Optional.ofNullable(globalConfig.getJsonObject(HTTP_PREFIX)).orElse(new JsonObject());
 
       // start HttpServer
       vertx.deployVerticle(new HttpServerVerticle(httpConfig));

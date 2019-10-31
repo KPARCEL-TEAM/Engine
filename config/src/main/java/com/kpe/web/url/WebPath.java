@@ -1,4 +1,4 @@
-package com.kpe.url;
+package com.kpe.web.url;
 
 /**
  * @description:

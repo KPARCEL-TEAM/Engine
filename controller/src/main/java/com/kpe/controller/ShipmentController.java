@@ -1,9 +1,13 @@
 package com.kpe.controller;
 
+import com.kpe.bo.WayBillBO;
 import com.kpe.servcie.ShipmentService;
+import com.kpe.web.url.WebPath;
 import com.kpe.web.annotation.Controller;
 import com.kpe.web.annotation.VertxRouter;
-import com.kpe.url.WebPath;
+import com.kpe.web.response.Response;
+import io.vertx.core.http.HttpMethod;
+import io.vertx.core.json.Json;
 import io.vertx.ext.web.RoutingContext;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,25 +27,17 @@ public class ShipmentController {
     shipmentService = new ShipmentService();
   }
 
-  @VertxRouter(url = WebPath.SHIPMENT_ORDER_CREATE)
+  @VertxRouter(url = WebPath.SHIPMENT_ORDER_CREATE, method = HttpMethod.POST)
   public void create(RoutingContext routingContext) {
 
-    //WayBillBO wayBillBO = Json.decodeValue(routingContext.getBodyAsString(), WayBillBO.class);
-
-/*    Response<?> response = shipmentService.createShipmentOrder(wayBillBO);
-    routingContext
-      .request()
-      .response()
-      .putHeader("content-type", "application/json;charset=utf-8")
-      .end(Json.encodePrettily(response));*/
-
-    log.info(this.hashCode() + "////");
+    WayBillBO wayBillBO = Json.decodeValue(routingContext.getBodyAsString(), WayBillBO.class);
+    Response<?> response = shipmentService.createShipmentOrder(wayBillBO);
 
     routingContext
       .request()
       .response()
       .putHeader("content-type", "application/json;charset=utf-8")
-      .end("123213");
+      .end(Json.encodePrettily(response));
   }
 
 }
