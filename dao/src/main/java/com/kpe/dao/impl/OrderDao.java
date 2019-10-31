@@ -16,6 +16,7 @@ public class OrderDao extends BaseDAO<OrderPO> {
 
   @Override
   public List<OrderPO> queryByCondition(Class<?>... parameters) {
+
     return null;
   }
 
@@ -35,25 +36,26 @@ public class OrderDao extends BaseDAO<OrderPO> {
 
   @Override
   public void save(List<OrderPO> entities) {
-
+    entities.forEach(this::save);
   }
 
   @Override
   public void update(OrderPO entity) {
+    em.merge(entity);
   }
 
   @Override
   public void update(List<OrderPO> entities) {
-
+    entities.forEach(this::update);
   }
 
   @Override
   public void delete(OrderPO entity) {
-
+    em.remove(queryById(entity.getId()));
   }
 
   @Override
   public void delete(List<OrderPO> entities) {
-
+    entities.forEach(this::delete);
   }
 }

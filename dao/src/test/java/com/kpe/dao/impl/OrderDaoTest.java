@@ -38,7 +38,16 @@ class OrderDaoTest {
 
   @Test
   void test(){
-    List<OrderPO> resultList = entityManager.createQuery("from " + OrderPO.class.getName()).getResultList();
-    System.out.println(resultList.toString());
+//    List<OrderPO> resultList = entityManager.createQuery("from " + OrderPO.class.getName()).getResultList();
+//    System.out.println(resultList.toString());
+//    OrderPO orderPO = new OrderPO();
+//    orderPO.setId(2);
+//    orderPO.setTitle("title1");
+//    orderPO.setUrl("url1");
+//    entityManager.persist(orderPO);
+//    entityManager.detach(orderPO);
+
+    OrderPO orderPO = entityManager.find(OrderPO.class, 2);
+    entityManager.remove(orderPO);
   }
 }
