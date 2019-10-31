@@ -15,17 +15,12 @@
 
     <dependency>
       <groupId>com.kpe</groupId>
-      <artifactId>config</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.kpe</groupId>
       <artifactId>entity</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-entitymanager</artifactId>
-    </dependency>
+
+
+
 
     <dependency>
       <groupId>org.postgresql</groupId>

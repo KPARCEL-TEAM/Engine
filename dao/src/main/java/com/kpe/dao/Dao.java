@@ -7,9 +7,9 @@ public interface Dao<T> {
   /**
    * CRUD
    */
-  T queryById();
+  T queryById(Integer id);
 
-  List<T> queryByCondition();
+  List<T> queryByCondition(Class<?> ...parameters);
 
   List<T> queryAll();
 

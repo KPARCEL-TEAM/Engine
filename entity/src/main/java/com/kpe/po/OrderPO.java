@@ -1,52 +1,23 @@
 package com.kpe.po;
 
+
+import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Data
+@Entity
+@Table(name= "t_order")
 public class OrderPO {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id")
   private Integer id;
 
+  @Column(name = "title")
   private String title;
-
+  @Column(name = "url")
   private String url;
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(String url) {
-    this.url = url;
-  }
-
-  @Override
-  public String toString() {
-    return "OrderPO{" +
-      "id=" + id +
-      ", title='" + title + '\'' +
-      ", url='" + url + '\'' +
-      '}';
-  }
-
-  public OrderPO() {
-  }
-
-  public OrderPO(Integer id, String title, String url) {
-    this.id = id;
-    this.title = title;
-    this.url = url;
-  }
 }
