@@ -1,12 +1,11 @@
 package com.kpe.controller;
 
 import com.kpe.servcie.JwtService;
-import com.kpe.web.url.WebPath;
 import com.kpe.web.annotation.Controller;
 import com.kpe.web.annotation.VertxRouter;
 import com.kpe.web.response.Response;
+import com.kpe.web.url.WebPath;
 import io.vertx.core.http.HttpMethod;
-import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Controller
-public class JwtController {
+public class JwtController extends BaseController {
 
   private JwtService jwtService;
 
@@ -34,11 +33,7 @@ public class JwtController {
     String password = jsonObject.getString("password");
 
     Response<?> response = jwtService.jwtCreate(userName, password);
+    successResponse(response, routingContext);
 
-    routingContext
-      .request()
-      .response()
-      .putHeader("content-type", "application/json;charset=utf-8")
-      .end(Json.encodePrettily(response));
   }
 }

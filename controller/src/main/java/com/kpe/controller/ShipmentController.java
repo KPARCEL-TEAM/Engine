@@ -2,10 +2,10 @@ package com.kpe.controller;
 
 import com.kpe.bo.WayBillBO;
 import com.kpe.servcie.ShipmentService;
-import com.kpe.web.url.WebPath;
 import com.kpe.web.annotation.Controller;
 import com.kpe.web.annotation.VertxRouter;
 import com.kpe.web.response.Response;
+import com.kpe.web.url.WebPath;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.json.Json;
 import io.vertx.ext.web.RoutingContext;
@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class ShipmentController {
+public class ShipmentController extends BaseController {
 
   private ShipmentService shipmentService;
 
@@ -32,12 +32,7 @@ public class ShipmentController {
 
     WayBillBO wayBillBO = Json.decodeValue(routingContext.getBodyAsString(), WayBillBO.class);
     Response<?> response = shipmentService.createShipmentOrder(wayBillBO);
-
-    routingContext
-      .request()
-      .response()
-      .putHeader("content-type", "application/json;charset=utf-8")
-      .end(Json.encodePrettily(response));
+    successResponse(response, routingContext);
   }
 
 }

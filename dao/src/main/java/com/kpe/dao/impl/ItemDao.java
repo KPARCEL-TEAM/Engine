@@ -40,10 +40,7 @@ public class ItemDao extends BaseDAO<ItemPO> {
 
   @Override
   public void save(List<ItemPO> entities) {
-    EntityTransaction transaction = em.getTransaction();
-    transaction.begin();
-    entities.forEach(item -> em.persist(item));
-    transaction.commit();
+    entities.forEach(this::save);
   }
 
   @Override
