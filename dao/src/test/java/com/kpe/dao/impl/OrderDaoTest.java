@@ -11,6 +11,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class OrderDaoTest {
@@ -36,7 +38,7 @@ class OrderDaoTest {
 
   @Test
   void test(){
-    OrderPO orderPO = entityManager.find(OrderPO.class, 1);
-    System.out.println(orderPO.toString());
+    List<OrderPO> resultList = entityManager.createQuery("from Order", OrderPO.class).getResultList();
+    System.out.println(resultList.toString());
   }
 }
