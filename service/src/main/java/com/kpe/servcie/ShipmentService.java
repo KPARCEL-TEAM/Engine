@@ -6,7 +6,6 @@ import com.kpe.bo.WayBillBO;
 import com.kpe.dao.impl.ItemDao;
 import com.kpe.po.ItemPO;
 import com.kpe.web.response.Response;
-import lombok.NoArgsConstructor;
 
 import java.util.*;
 
@@ -15,10 +14,13 @@ import java.util.*;
  * @author: LCN
  * @date: 2019-10-30 15:11
  */
-@NoArgsConstructor
 public class ShipmentService {
 
-  private ItemDao itemDao = new ItemDao();
+  private ItemDao itemDao;
+
+  public ShipmentService() {
+    itemDao = new ItemDao();
+  }
 
   public Response<Map<String, Object>> createShipmentOrder(WayBillBO wayBillBO) {
 
@@ -53,7 +55,7 @@ public class ShipmentService {
       list.add(itemPO);
     }
 
-    itemDao.save((ItemPO) list);
+    itemDao.save(list);
 
     // response
     Response<Map<String, Object>> response = new Response<>();
