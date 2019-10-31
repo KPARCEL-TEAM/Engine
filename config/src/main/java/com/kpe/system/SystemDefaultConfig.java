@@ -12,6 +12,9 @@ public interface SystemDefaultConfig {
    */
   interface Http {
 
+    /** url控制器所在包路径 */
+    String CONTROLLER_PACKAGE_PATH = "com.kpe.controller";
+
     /** http 端口 */
     int PORT = 8080;
 
