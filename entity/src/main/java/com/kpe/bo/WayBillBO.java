@@ -34,6 +34,7 @@ public class WayBillBO implements BaseBO {
   /**
    * 包裹信息
    */
+  @JsonProperty("package")
   private PackageBO packageInfo;
 
   /**

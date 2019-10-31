@@ -10,7 +10,7 @@ public class DataSourceInit {
 
   private static EntityManagerFactory emf;
 
-  {
+  static {
     emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
   }
 

@@ -2,6 +2,7 @@ package com.kpe.dao.impl;
 
 import com.kpe.base.BaseDAO;
 import com.kpe.po.ItemPO;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.EntityTransaction;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * @author: LCN
  * @date: 2019-10-31 17:34
  */
+@NoArgsConstructor
 public class ItemDao extends BaseDAO<ItemPO> {
 
   @Override
