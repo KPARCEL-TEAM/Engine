@@ -7,5 +7,6 @@ import javax.persistence.EntityManager;
 
 public abstract class BaseDAO<T> implements Dao<T> {
 
-  static EntityManager em = DataSourceInit.getSessionFactory().createEntityManager();
+  protected final static EntityManager em = DataSourceInit.getSessionFactory().createEntityManager();
+
 }

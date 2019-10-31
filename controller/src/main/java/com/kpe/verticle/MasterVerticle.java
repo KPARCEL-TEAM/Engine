@@ -11,21 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.Optional;
 
 @Slf4j
-public class EngineVerticle extends AbstractVerticle {
-
+public class MasterVerticle extends AbstractVerticle {
 
   @Override
   public void start(Future<Void> startFuture) throws Exception {
-
-//      Router router = Router.router(vertx);
-
-//    router.get("").handler(::);
-//    router.post("").handler(::);
-//    router.put("").handler(::);
-//    router.delete("").handler(::);
-//    router.patch("").handler(::);
-//    router.head().handler(::);
-//    router.options().handler(::);
 
     ConfigStoreOptions store = new ConfigStoreOptions()
       .setType("file")
@@ -38,10 +27,9 @@ public class EngineVerticle extends AbstractVerticle {
 
     retriever.getConfig(result -> {
       if (result.failed()) {
-        log.error("EngineVerticle load config fail, program stop now !");
+        log.error("MasterVerticle load config fail, program stop now !");
         return;
       }
-
       JsonObject globalConfig = result.result();
       JsonObject httpConfig = Optional.ofNullable(globalConfig.getJsonObject("http")).orElse(new JsonObject());
 

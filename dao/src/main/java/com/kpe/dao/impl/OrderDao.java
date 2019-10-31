@@ -3,10 +3,10 @@ package com.kpe.dao.impl;
 import com.kpe.base.BaseDAO;
 import com.kpe.po.OrderPO;
 
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class OrderDao extends BaseDAO<OrderPO> {
+
   @Override
   public OrderPO queryById() {
 
