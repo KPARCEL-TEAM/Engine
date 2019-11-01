@@ -143,7 +143,9 @@ public class HttpServerVerticle extends AbstractVerticle {
           try {
             method.invoke(obj, rc);
           } catch (IllegalAccessException | InvocationTargetException e) {
-            log.error("HttpServer handler request fail ----> {}", e);
+            log.error("HttpServer Reflection call router's method fail ----> {}", e);
+          } catch (Exception e) {
+            log.error("HttpServer router encounter with exception ----> {}", e);
           }
         });
       }
