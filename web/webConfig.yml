@@ -1,0 +1,4 @@
+http:
+  port: 8090
+  idlTimeout: 5
+  controllerPath: "com.kpe.controller"

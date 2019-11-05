@@ -6,6 +6,7 @@ import com.kpe.web.annotation.Controller;
 import com.kpe.web.annotation.VertxRouter;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
+import io.vertx.core.Promise;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerOptions;
 import io.vertx.core.json.JsonObject;
@@ -28,41 +29,45 @@ import java.util.stream.Collectors;
 @Slf4j
 public class HttpServerVerticle extends AbstractVerticle {
 
-  /**
-   * http Config
-   */
-  private JsonObject httpConfig;
 
-  public HttpServerVerticle(JsonObject httpConfig) {
-    this.httpConfig = httpConfig;
+  public HttpServerVerticle() {
   }
 
   @Override
   public void start(Future<Void> startFuture) throws Exception {
 
-    log.info("HttpServer start init ");
+    Future<Void> future = startHttpServer();
+    future.setHandler(startFuture);
+  }
 
-    HttpServerOptions options = initHttpServerOptions();
-    Router router = initRouter();
+  private Future<Void> startHttpServer() throws Exception {
+
+    log.info("HttpServer start init ");
+    Promise<Void> futurePromise = Promise.promise();
+    Future<Void> future = futurePromise.future();
+    JsonObject httpConfig = config();
+    HttpServerOptions options = initHttpServerOptions(httpConfig);
+    Router router = initRouter(httpConfig);
     int port = httpConfig.getInteger("port", SystemDefaultConfig.Http.PORT);
     vertx.createHttpServer(options)
       .requestHandler(router)
       .listen(port, result -> {
-        if (result.succeeded()) {
-          log.info("HttpServer start success");
-          startFuture.succeeded();
-          return;
-        }
-        log.info("HttpServer start fail -------> {}", result.cause());
-        startFuture.failed();
+          if (result.succeeded()) {
+            log.info("HttpServer start success");
+            future.complete();
+            return;
+          }
+          log.info("HttpServer start fail -------> {}", result.cause());
+          future.fail(result.cause());
       });
+    return future;
   }
 
   /**
    * set HttpServerOption
    * @return
    */
-  private HttpServerOptions initHttpServerOptions() {
+  private HttpServerOptions initHttpServerOptions(JsonObject httpConfig) {
 
     HttpServerOptions options = new HttpServerOptions();
     int httpIdleTime = httpConfig.getInteger("idlTimeout", SystemDefaultConfig.Http.IDLE_TIMEOUT);
@@ -77,15 +82,15 @@ public class HttpServerVerticle extends AbstractVerticle {
    * init router
    * @return
    */
-  private Router initRouter() throws Exception{
+  private Router initRouter(JsonObject httpConfig) throws Exception{
 
     Router router = Router.router(vertx);
     router.route().handler(BodyHandler.create());
-    handlerRouter(router);
+   // handlerRouter(router, httpConfig);
     return router;
   }
 
-  private void handlerRouter(Router router) {
+  private void handlerRouter(Router router, JsonObject httpConfig) {
 
     String packagePath = httpConfig.getString("controllerPath", SystemDefaultConfig.Http.CONTROLLER_PACKAGE_PATH);
 
